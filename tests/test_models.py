@@ -9,7 +9,10 @@ def test_default_configuration() -> None:
     assert config.config_version == 1
     assert config.active_profile_id == "general"
     assert config.profiles[0].name == "Allgemein"
-    assert config.profiles[0].buttons == []
+    assert [button.name for button in config.profiles[0].buttons] == [
+        "Editor öffnen",
+        "Python-Website",
+    ]
     assert config.settings == AppSettings(
         hotkey="CTRL+D",
         columns=4,

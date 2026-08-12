@@ -71,7 +71,36 @@ class QuickDeckConfig:
 
 def create_default_config() -> QuickDeckConfig:
     """Create a fresh configuration with the default profile."""
-    default_profile = DeckProfile(id=DEFAULT_PROFILE_ID, name="Allgemein")
+    default_profile = DeckProfile(
+        id=DEFAULT_PROFILE_ID,
+        name="Allgemein",
+        buttons=[
+            DeckButton(
+                id="example-notepad",
+                name="Editor öffnen",
+                position=0,
+                actions=[
+                    ActionDefinition(
+                        id="open-notepad",
+                        type=ActionType.OPEN_APPLICATION,
+                        target="notepad.exe",
+                    )
+                ],
+            ),
+            DeckButton(
+                id="example-python-website",
+                name="Python-Website",
+                position=1,
+                actions=[
+                    ActionDefinition(
+                        id="open-python-website",
+                        type=ActionType.OPEN_WEBSITE,
+                        target="https://www.python.org/",
+                    )
+                ],
+            ),
+        ],
+    )
     return QuickDeckConfig(
         config_version=CURRENT_CONFIG_VERSION,
         active_profile_id=default_profile.id,

@@ -5,7 +5,7 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
-from quickdeck.services import StorageService
+from quickdeck.services import ActionService, DeckService, StorageService
 from quickdeck.ui.main_window import MainWindow
 
 
@@ -20,9 +20,11 @@ def configure_logging() -> None:
 def main() -> int:
     """Create and run the QuickDeck application."""
     configure_logging()
-    StorageService().load_config()
+    storage_service = StorageService()
+    config = storage_service.load_config()
     application = QApplication(sys.argv)
-    window = MainWindow()
+    deck_service = DeckService(config, storage_service)
+    window = MainWindow(config, ActionService(), deck_service)
     window.show()
     return application.exec()
 
