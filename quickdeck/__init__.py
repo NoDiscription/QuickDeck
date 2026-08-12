@@ -1,0 +1,2 @@
+"""QuickDeck desktop application."""
+

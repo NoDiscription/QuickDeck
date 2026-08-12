@@ -1,0 +1,2 @@
+"""Shared QuickDeck utility functions."""
+
